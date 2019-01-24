@@ -1,0 +1,27 @@
+User-agent: Googlebot
+Disallow: /WhereAreYou/api/
+Allow: /WhereAreYou/
+
+User-agent: Googlebot-images
+Disallow: /WhereAreYou/api/
+Allow: /WhereAreYou/
+
+User-agent: Adsbot-Google
+Disallow: /WhereAreYou/api/
+Allow: /WhereAreYou/
+
+User-agent: Mediapartners-Google
+Disallow: /WhereAreYou/api/
+Allow: /WhereAreYou/
+
+User-agent: Slurp
+Disallow: /WhereAreYou/api/
+Allow: /WhereAreYou/
+
+User-agent: Bingbot
+Disallow: /WhereAreYou/api/
+Allow: /WhereAreYou/
+
+User-agent: *
+Disallow: /WhereAreYou/api/
+Allow: /WhereAreYou/
