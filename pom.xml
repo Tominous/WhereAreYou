@@ -4,7 +4,7 @@
 	<artifactId>WhereAreYou</artifactId>
 	<version>0.1.0</version>
 	<name>Where Are You</name>
-	<description>Simple tool to help you to find your friends easier.</description>
+	<description>A tool to helps OPs on finding players current locations in Minecraft 1.13.x.</description>
 	<build>
 		<finalName>Where Are You</finalName>
 		<plugins>

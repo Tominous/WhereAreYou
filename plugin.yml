@@ -1,5 +1,5 @@
 name: WhereAreYou
-description: Simple tool to help you to find your friends easier.
+description: A tool to helps OPs on finding players current locations in Minecraft 1.13.x.
 version: 0.1.0
 api-version: 1.13
 load: STARTUP
