@@ -1,2 +1,2 @@
-# WhereAreYou
-Minecraft 1.13.x plugin: Helps OPs to find players current locations.
+# Where Are You
+## A tool to helps OPs on finding players' current locations in Minecraft 1.13.x.
