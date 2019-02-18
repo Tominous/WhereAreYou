@@ -1,20 +1,20 @@
 package io.github.leothawne.WhereAreYou;
 
-import io.github.leothawne.WhereAreYou.api.bStats.Metrics;
+import io.github.leothawne.WhereAreYou.api.bStats.MetricsAPI;
 
 public class MetricsLoader {
-	private WhereAreYouLoader plugin;
-	private ConsoleLoader myLogger;
-	public MetricsLoader(WhereAreYouLoader plugin, ConsoleLoader myLogger) {
-		this.plugin = plugin;
-		this.myLogger = myLogger;
+	private static WhereAreYouLoader plugin;
+	private static ConsoleLoader myLogger;
+	protected MetricsLoader(WhereAreYouLoader plugin, ConsoleLoader myLogger) {
+		MetricsLoader.plugin = plugin;
+		MetricsLoader.myLogger = myLogger;
 	}
-	public final void init() {
-		Metrics metrics = new Metrics(this.plugin);
+	protected static final void init() {
+		MetricsAPI metrics = new MetricsAPI(plugin);
 		if(metrics.isEnabled() == true) {
-			this.myLogger.info("Where Are You is using bStats to collect data to improve the next versions. In case you want to know what data will be collected: [https://bstats.org/getting-started]");
+			myLogger.info("Where Are You is using bStats to collect data to improve the next versions. In case you want to know what data will be collected: [https://bstats.org/getting-started]");
 		} else {
-			this.myLogger.warning("bStats is disabled and Where Are You cannot use it. Please enable bStats! Thank you.");
+			myLogger.warning("bStats is disabled and Where Are You cannot use it. Please enable bStats! Thank you.");
 		}
 	}
 }

@@ -5,37 +5,38 @@ import java.io.File;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigurationLoader {
-	private WhereAreYouLoader plugin;
-	private ConsoleLoader myLogger;
-	public ConfigurationLoader(WhereAreYouLoader plugin, ConsoleLoader myLogger) {
-		this.plugin = plugin;
-		this.myLogger = myLogger;
+	private static WhereAreYouLoader plugin;
+	private static ConsoleLoader myLogger;
+	protected ConfigurationLoader(WhereAreYouLoader plugin, ConsoleLoader myLogger) {
+		ConfigurationLoader.plugin = plugin;
+		ConfigurationLoader.myLogger = myLogger;
 	}
-	private File configFile;
-	public final void check() {
-		this.myLogger.info("Looking for config file...");
-		this.configFile = new File(this.plugin.getDataFolder(), "config.yml");
-		if(this.configFile.exists() == false) {
-			this.myLogger.warning("Config file not found. Creating a new one...");
-			this.plugin.saveDefaultConfig();
-			this.myLogger.info("New config file created.");
+	private static File configFile;
+	protected static final void check() {
+		myLogger.info("Looking for config file...");
+		configFile = new File(plugin.getDataFolder(), "config.yml");
+		if(configFile.exists() == false) {
+			myLogger.warning("Config file not found. Creating a new one...");
+			plugin.saveDefaultConfig();
+			myLogger.info("New config file created.");
 		} else {
-			this.myLogger.info("Config file found.");
+			myLogger.info("Config file found.");
 		}
 	}
-	public final FileConfiguration load() {
-		this.myLogger.info("Loading config file...");
-		this.configFile = new File(this.plugin.getDataFolder(), "config.yml");
-		if(this.configFile.exists()) {
-			FileConfiguration configuration = this.plugin.getConfig();
-			this.myLogger.info("Config file loaded.");
-			if(configuration.getInt("config-version") != new Version(this.plugin, this.myLogger).getConfigVersion()) {
-				this.myLogger.severe("The config.yml file is outdated! You must manually delete the config.yml file and reload the plugin.");
+	protected static final FileConfiguration load() {
+		myLogger.info("Loading config file...");
+		configFile = new File(plugin.getDataFolder(), "config.yml");
+		if(configFile.exists()) {
+			FileConfiguration configuration = plugin.getConfig();
+			myLogger.info("Config file loaded.");
+			new Version(plugin, myLogger);
+			if(configuration.getInt("config-version") != Version.getConfigVersion()) {
+				myLogger.severe("The config.yml file is outdated! You must manually delete the config.yml file and reload the plugin.");
 			}
 			return configuration;
 		}
-		this.myLogger.severe("A config file was not found to be loaded.");
-		this.myLogger.severe("Running without config file. You will face several errors from this point.");
+		myLogger.severe("A config file was not found to be loaded.");
+		myLogger.severe("Running without config file. You will face several errors from this point.");
 		return null;
 	}
 }

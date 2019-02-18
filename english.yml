@@ -1,3 +1,6 @@
+no-permission: "You can't do that! You don't have permission."
+player-empty: "You must specify a player!"
+player-tma: "Too many arguments!"
 
 #Do not change it under any circumstances!
 language-version: 1

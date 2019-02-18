@@ -7,58 +7,63 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import io.github.leothawne.WhereAreYou.commands.WhereAreYouAdminCommand;
-import io.github.leothawne.WhereAreYou.commands.WhereAreYouCommand;
-import io.github.leothawne.WhereAreYou.commands.constructors.WhereAreYouAdminCommandConstructor;
-import io.github.leothawne.WhereAreYou.commands.constructors.WhereAreYouCommandConstructor;
-import io.github.leothawne.WhereAreYou.events.players.AdminVersionCheckEvent;
+import io.github.leothawne.WhereAreYou.command.WhereAreYouAdminCommand;
+import io.github.leothawne.WhereAreYou.command.WhereAreYouCommand;
+import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouAdminCommandTabCompleter;
+import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouCommandConstructor;
+import io.github.leothawne.WhereAreYou.event.player.AdminEvent;
 
 public class WhereAreYouLoader extends JavaPlugin {
 	private final ConsoleLoader myLogger = new ConsoleLoader(this);
-	public void registerEvents(WhereAreYouLoader plugin, Listener...listeners) {
+	public void registerEvents(Listener...listeners) {
 		for(Listener listener : listeners) {
-			Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
+			Bukkit.getServer().getPluginManager().registerEvents(listener, this);
 		}
 	}
 	private FileConfiguration configuration;
-	@SuppressWarnings("unused")
 	private FileConfiguration language;
 	@Override
-	public void onEnable() {
-		for(Player player : this.getServer().getOnlinePlayers()) {
+	public final void onEnable() {
+		for(Player player : getServer().getOnlinePlayers()) {
 			player.sendMessage(ChatColor.AQUA + "[WhereAreYou] " + ChatColor.LIGHT_PURPLE + "Loading...");
 		}
-		this.myLogger.Hello();
-		new MetricsLoader(this, this.myLogger).init();
-		this.myLogger.info("Loading...");
-		new ConfigurationLoader(this, this.myLogger).check();
-		this.configuration = new ConfigurationLoader(this, this.myLogger).load();
-		new LanguageLoader(this, this.myLogger, this.configuration).check();
-		this.language = new LanguageLoader(this, this.myLogger, this.configuration).load();
-		if(this.configuration.getBoolean("enable-plugin") == true) {
-			this.getCommand("whereareyou").setExecutor(new WhereAreYouCommand(this, this.myLogger, this.language));
-			this.getCommand("whereareyouadmin").setExecutor(new WhereAreYouAdminCommand(this, this.myLogger, this.language));
-			this.getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandConstructor());
-			this.getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandConstructor());
-			this.registerEvents(this, new AdminVersionCheckEvent(this.configuration));
-			new Version(this, this.myLogger).check();
-			this.myLogger.warning("A permissions plugin is required! Just make sure you are using one. Permissions nodes can be found at: [https://leothawne.github.io/WhereAreYou/permissions.html]");
-			for(Player player : this.getServer().getOnlinePlayers()) {
+		myLogger.Hello();
+		new MetricsLoader(this, myLogger);
+		MetricsLoader.init();
+		myLogger.info("Loading...");
+		new ConfigurationLoader(this, myLogger);
+		ConfigurationLoader.check();
+		new ConfigurationLoader(this, myLogger);
+		configuration = ConfigurationLoader.load();
+		new LanguageLoader(this, myLogger, configuration);
+		LanguageLoader.check();
+		new LanguageLoader(this, myLogger, configuration);
+		language = LanguageLoader.load();
+		if(configuration.getBoolean("enable-plugin") == true) {
+			getCommand("whereareyou").setExecutor(new WhereAreYouCommand(this, myLogger, language));
+			getCommand("whereareyouadmin").setExecutor(new WhereAreYouAdminCommand(this, myLogger, language));
+			getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandConstructor());
+			getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandTabCompleter());
+			registerEvents(new AdminEvent(configuration));
+			new Version(this, myLogger);
+			Version.check();
+			myLogger.warning("A permissions plugin is required! Just make sure you are using one. Permissions nodes can be found at: [https://leothawne.github.io/WhereAreYou/permissions.html]");
+			for(Player player : getServer().getOnlinePlayers()) {
 				player.sendMessage(ChatColor.AQUA + "[WhereAreYou] " + ChatColor.LIGHT_PURPLE + "Loaded!");
 			}
 		} else {
-			this.myLogger.severe("You manually choose to disable this plugin.");
-			this.getServer().getPluginManager().disablePlugin(this);
+			myLogger.severe("You manually choose to disable this plugin.");
+			getServer().getPluginManager().disablePlugin(this);
 		}
 	}
 	@Override
-	public void onDisable() {
-		for(Player player : this.getServer().getOnlinePlayers()) {
+	public final void onDisable() {
+		for(Player player : getServer().getOnlinePlayers()) {
 			player.sendMessage(ChatColor.AQUA + "[WhereAreYou] " + ChatColor.LIGHT_PURPLE + "Unloading...");
 		}
-		this.myLogger.info("Unloading...");
-		this.myLogger.Goodbye();
-		for(Player player : this.getServer().getOnlinePlayers()) {
+		myLogger.info("Unloading...");
+		myLogger.Goodbye();
+		for(Player player : getServer().getOnlinePlayers()) {
 			player.sendMessage(ChatColor.AQUA + "[WhereAreYou] " + ChatColor.LIGHT_PURPLE + "Unloaded!");
 		}
 	}

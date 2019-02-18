@@ -8,43 +8,46 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class LanguageLoader {
-	private WhereAreYouLoader plugin;
-	private ConsoleLoader myLogger;
-	private FileConfiguration configuration;
-	public LanguageLoader(WhereAreYouLoader plugin, ConsoleLoader myLogger, FileConfiguration configuration) {
-		this.plugin = plugin;
-		this.myLogger = myLogger;
-		this.configuration = configuration;
+	private static WhereAreYouLoader plugin;
+	private static ConsoleLoader myLogger;
+	private static FileConfiguration configuration;
+	protected LanguageLoader(WhereAreYouLoader plugin, ConsoleLoader myLogger, FileConfiguration configuration) {
+		LanguageLoader.plugin = plugin;
+		LanguageLoader.myLogger = myLogger;
+		LanguageLoader.configuration = configuration;
 	}
-	private File languageFile;
-	public final void check() {
-		this.myLogger.info("Looking for language file...");
-		this.languageFile = new File(this.plugin.getDataFolder(), this.configuration.getString("language") + ".yml");
-		if(this.languageFile.exists() == false) {
-			this.myLogger.warning("Language file not found. Extracting...");
-			if(this.configuration.getString("language").equalsIgnoreCase("english") || this.configuration.getString("language").equalsIgnoreCase("portuguese")) {
-				this.plugin.saveResource(configuration.getString("language") + ".yml", true);
-				this.myLogger.warning(configuration.getString("language") + ".yml extracted!");
+	private static File languageFile;
+	protected static final void check() {
+		myLogger.info("Looking for language file...");
+		languageFile = new File(plugin.getDataFolder(), configuration.getString("language") + ".yml");
+		if(languageFile.exists() == false) {
+			myLogger.warning("Language file not found. Extracting...");
+			if(configuration.getString("language").equalsIgnoreCase("english") || configuration.getString("language").equalsIgnoreCase("portuguese")) {
+				plugin.saveResource(configuration.getString("language") + ".yml", true);
+				myLogger.warning(configuration.getString("language") + ".yml extracted!");
 			} else {
-				this.myLogger.severe(configuration.getString("language") + ".yml is not supported yet. I suggest you to manually create the language file and do manually the translation.");
+				myLogger.severe(configuration.getString("language") + ".yml is not supported yet. I suggest you to manually create the language file and do manually the translation.");
 			}
-			
 		} else {
-			this.myLogger.info(configuration.getString("language") + ".yml file found.");
+			myLogger.info(configuration.getString("language") + ".yml file found.");
 		}
 	}
-	public final FileConfiguration load() {
-		this.myLogger.info("Loading language file...");
-		this.languageFile = new File(this.plugin.getDataFolder(), this.configuration.getString("language") + ".yml");
-		if(this.languageFile.exists()) {
+	protected static final FileConfiguration load() {
+		myLogger.info("Loading language file...");
+		languageFile = new File(plugin.getDataFolder(), configuration.getString("language") + ".yml");
+		if(languageFile.exists()) {
 			FileConfiguration languageConfig = new YamlConfiguration();
 			try {
 				languageConfig.load(languageFile);
-				this.myLogger.info(this.configuration.getString("language") + ".yml file loaded.");
-				int languageVersion = new Version(plugin, myLogger).getLanguageVersion(this.configuration.getString("language"));
+				myLogger.info(configuration.getString("language") + ".yml file loaded.");
+				int languageVersion = 0;
+				if(configuration.getString("language").equalsIgnoreCase("english") || configuration.getString("language").equalsIgnoreCase("portuguese")) {
+					new Version(plugin, myLogger);
+					languageVersion = Version.getLanguageVersion(configuration.getString("language"));
+				}
 				if(languageVersion != 0) {
 					if(languageConfig.getInt("language-version") != languageVersion) {
-						this.myLogger.severe("The " + this.configuration.getString("language") + ".yml file is outdated! You must manually delete the " + this.configuration.getString("language") + ".yml file and reload the plugin.");
+						myLogger.severe("The " + configuration.getString("language") + ".yml file is outdated! You must manually delete the " + configuration.getString("language") + ".yml file and reload the plugin.");
 					}
 				}
 				return languageConfig;
@@ -53,8 +56,8 @@ public class LanguageLoader {
 			}
 			return null;
 		}
-		this.myLogger.severe("A config file was not found to be loaded.");
-		this.myLogger.severe("Running without config file. You will face several errors from this point.");
+		myLogger.severe("A config file was not found to be loaded.");
+		myLogger.severe("Running without config file. You will face several errors from this point.");
 		return null;
 	}
 }
