@@ -49,7 +49,7 @@ public class WhereAreYouAdminCommand implements CommandExecutor {
 						if(sender instanceof Player) {
 							Player player = (Player) sender;
 							if(player.getLocation().getWorld().equals(world)) {
-								if(player.hasPermission("minecraft.command.teleport") || player.isOp()) {
+								if(player.hasPermission("minecraft.command.teleport") || (plugin.getServer().getPluginManager().isPluginEnabled("Essentials") && player.hasPermission("essentials.tp")) || player.isOp()) {
 									sender.sendMessage("");
 									JSONMessageAPI message = JSONMessageAPI.create("Click here to teleport to that player.");
 									message.color(ChatColor.GOLD);
