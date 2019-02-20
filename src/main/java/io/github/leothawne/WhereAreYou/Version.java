@@ -24,10 +24,10 @@ public class Version {
 	private static final String Minecraft_Version = "1.13.x";
 	private static final String Minecraft_Build = "1.13-R0.1-SNAPSHOT";
 	private static final String Java_Version = "8+";
-	protected static final int getConfigVersion() {
+	public static final int getConfigVersion() {
 		return configFileVersion;
 	}
-	protected static final int getLanguageVersion(String language) {
+	public static final int getLanguageVersion(String language) {
 		if(language.equalsIgnoreCase("english")) {
 			return english_languageFileVersion;
 		}
@@ -36,25 +36,25 @@ public class Version {
 		}
 		return 0;
 	}
-	protected static final String getVersionNumber() {
+	public static final String getVersionNumber() {
 		return Plugin_Version;
 	}
-	protected static final String getVersionDate() {
+	public static final String getVersionDate() {
 		return Plugin_Date;
 	}
-	protected static final String getMinecraftVersion() {
+	public static final String getMinecraftVersion() {
 		return Minecraft_Version;
 	}
-	protected static final String getMinecraftBuild() {
+	public static final String getMinecraftBuild() {
 		return Minecraft_Build;
 	}
-	protected static final String getJavaVersion() {
+	public static final String getJavaVersion() {
 		return Java_Version;
 	}
 	public static final void version(CommandSender sender) {
 		sender.sendMessage(ChatColor.AQUA + "Where Are You " + ChatColor.YELLOW + "plugin " + ChatColor.GREEN + "" + Plugin_Version + "" + ChatColor.YELLOW + " (" + ChatColor.GREEN + "" + Plugin_Date + "" + ChatColor.YELLOW + "), Minecraft " + ChatColor.GREEN + "" + Minecraft_Version +  "" + ChatColor.YELLOW + " (Java " + ChatColor.GREEN + "" + Java_Version + "" + ChatColor.YELLOW + ", build " + ChatColor.GREEN + "" + Minecraft_Build + "" + ChatColor.YELLOW + ").");
 	}
-	protected static final void check() {
+	public static final void check() {
 		try {
 			URLConnection allowedUrl = new URL("https://leothawne.github.io/WhereAreYou/api/" + Plugin_Version + "/plugin.html").openConnection();
 			allowedUrl.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");

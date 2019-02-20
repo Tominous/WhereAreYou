@@ -8,38 +8,24 @@ public class ConsoleLoader {
 	protected ConsoleLoader(WhereAreYouLoader plugin) {
 		this.plugin = plugin;
 	}
-	private final ConsoleCommandSender newLogger() {
+	private final ConsoleCommandSender getConsoleSender() {
 		return plugin.getServer().getConsoleSender();
 	}
-	private final String LTIMVersion = Version.getVersionNumber();
-	private final String LTIMVersion_Date = Version.getVersionDate();
-	private final String Minecraft_Version = Version.getMinecraftVersion();
-	private final String Java_Version = Version.getJavaVersion();
-	protected final void Hello() {
-		newLogger().sendMessage(ChatColor.AQUA + ".  .   .  .                   .            .   .      ");
-		newLogger().sendMessage(ChatColor.AQUA + " \\  \\ /  /|                  / \\            \\ /       " + ChatColor.LIGHT_PURPLE + "  V " + LTIMVersion + " (Minecraft " + Minecraft_Version + ")");
-		newLogger().sendMessage(ChatColor.AQUA + "  \\  \\  / |--..-..--.-.     /___\\ .--.-.     :.-..  . " + ChatColor.LIGHT_PURPLE + "  Works with Java " + Java_Version);
-		newLogger().sendMessage(ChatColor.AQUA + "   \\/ \\/  |  (.-'| (.-'    /     \\| (.-'     (   |  | " + ChatColor.LIGHT_PURPLE + "  Released on " + LTIMVersion_Date);
-		newLogger().sendMessage(ChatColor.AQUA + "    ' '   '  ``--'  `--'  '       '  `--'    '`-'`--`-" + ChatColor.LIGHT_PURPLE + "  Twitter @leonappi_");
-		newLogger().sendMessage("");
-	}
-	protected final void Goodbye() {
-		newLogger().sendMessage(ChatColor.AQUA + " .--.           ..           ");
-		newLogger().sendMessage(ChatColor.AQUA + ":               ||           ");
-		newLogger().sendMessage(ChatColor.AQUA + "| --..-. .-. .-.||.-..  ..-. ");
-		newLogger().sendMessage(ChatColor.AQUA + ":   (   (   (   ||   |  (.-' ");
-		newLogger().sendMessage(ChatColor.AQUA + " `--'`-' `-' `-'`'`-'`--|`--'");
-		newLogger().sendMessage(ChatColor.AQUA + "                        ;    ");
-		newLogger().sendMessage(ChatColor.AQUA + "                     `-'     ");
-		newLogger().sendMessage("");
+	public final void Hello() {
+		getConsoleSender().sendMessage(ChatColor.AQUA + "__          _______  _    _ ");
+		getConsoleSender().sendMessage(ChatColor.AQUA + "\\ \\        / |  __ \\| |  | |");
+		getConsoleSender().sendMessage(ChatColor.AQUA + " \\ \\  /\\  / /| |__) | |  | |" + ChatColor.WHITE + "  V: " + Version.getVersionNumber() + " (Minecraft: " + Version.getMinecraftVersion() + ")");
+		getConsoleSender().sendMessage(ChatColor.AQUA + "  \\ \\/  \\/ / |  _  /| |  | |" + ChatColor.WHITE + "  Requires Java: " + Version.getJavaVersion());
+		getConsoleSender().sendMessage(ChatColor.AQUA + "   \\  /\\  /  | | \\ \\| |__| |" + ChatColor.WHITE + "  Released on: " + Version.getVersionDate());
+		getConsoleSender().sendMessage(ChatColor.AQUA + "    \\/  \\/   |_|  \\_\\\\____/ " + ChatColor.WHITE + "  My Twitter: @leonappi_");
 	}
 	public final void info(String message) {
-		newLogger().sendMessage(ChatColor.AQUA + "[Where Are You " + ChatColor.WHITE + "INFO" + ChatColor.AQUA + "] " + ChatColor.LIGHT_PURPLE + "" + message);
+		getConsoleSender().sendMessage(ChatColor.WHITE + "[" + ChatColor.AQUA + "WRU " + ChatColor.GREEN + "I" + ChatColor.WHITE + "] " + message);
 	}
 	public final void warning(String message) {
-		newLogger().sendMessage(ChatColor.AQUA + "[Where Are You " + ChatColor.YELLOW + "WARNING" + ChatColor.AQUA + "] " + ChatColor.LIGHT_PURPLE + "" + message);
+		getConsoleSender().sendMessage(ChatColor.WHITE + "[" + ChatColor.AQUA + "WRU " + ChatColor.YELLOW + "W" + ChatColor.WHITE + "] " + message);
 	}
 	public final void severe(String message) {
-		newLogger().sendMessage(ChatColor.AQUA + "[Where Are You " + ChatColor.RED + "ERROR" + ChatColor.AQUA + "] " + ChatColor.LIGHT_PURPLE + "" + message);
+		getConsoleSender().sendMessage(ChatColor.WHITE + "[" + ChatColor.AQUA + "WRU " + ChatColor.RED + "E" + ChatColor.WHITE + "] " + message);
 	}
 }

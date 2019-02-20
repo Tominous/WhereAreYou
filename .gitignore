@@ -37,3 +37,5 @@ target/classes/io/github/leothawne/WhereAreYou/command/tabCompleter/WhereAreYouC
 target/classes/io/github/leothawne/WhereAreYou/command/WhereAreYouAdminCommand.class
 target/classes/io/github/leothawne/WhereAreYou/command/WhereAreYouCommand.class
 target/classes/io/github/leothawne/WhereAreYou/event/player/AdminEvent.class
+target/classes/io/github/leothawne/WhereAreYou/api/utility/TabCompleterAPI.class
+target/classes/io/github/leothawne/WhereAreYou/api/utility/WarnIntegrationsAPI.class
