@@ -20,8 +20,6 @@ target/classes/io/github/leothawne/WhereAreYou/WhereAreYouLoader.class
 target/classes/META-INF/MANIFEST.MF
 target/classes/META-INF/maven/io.github.leothawne/WhereAreYou/pom.properties
 target/classes/META-INF/maven/io.github.leothawne/WhereAreYou/pom.xml
-target/test-classes/io/github/leothawne/WhereAreYou/AppTest.class
-src/test/java/io/github/leothawne/WhereAreYou/AppTest.java
 target/classes/io/github/leothawne/WhereAreYou/api/bStats/MetricsAPI$1.class
 target/classes/io/github/leothawne/WhereAreYou/api/bStats/MetricsAPI$2.class
 target/classes/io/github/leothawne/WhereAreYou/api/bStats/MetricsAPI.class
@@ -39,3 +37,4 @@ target/classes/io/github/leothawne/WhereAreYou/command/WhereAreYouCommand.class
 target/classes/io/github/leothawne/WhereAreYou/event/player/AdminEvent.class
 target/classes/io/github/leothawne/WhereAreYou/api/utility/TabCompleterAPI.class
 target/classes/io/github/leothawne/WhereAreYou/api/utility/WarnIntegrationsAPI.class
+target/test-classes/io/github/leothawne/WhereAreYou/AppTest.class
