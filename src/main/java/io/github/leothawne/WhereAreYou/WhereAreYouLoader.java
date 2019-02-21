@@ -1,10 +1,13 @@
 package io.github.leothawne.WhereAreYou;
 
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.leothawne.WhereAreYou.api.utility.WarnIntegrationsAPI;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouAdminCommand;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouCommand;
 import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouAdminCommandTabCompleter;
@@ -42,6 +45,7 @@ public class WhereAreYouLoader extends JavaPlugin {
 			registerEvents(new AdminEvent(configuration));
 			new Version(this, myLogger);
 			Version.check();
+			new WarnIntegrationsAPI(this, Arrays.asList("Essentials"));
 		} else {
 			myLogger.severe("You manually choose to disable this plugin.");
 			getServer().getPluginManager().disablePlugin(this);
