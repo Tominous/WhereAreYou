@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2019 Murilo Amaral Nappi (murilonappi@gmail.com)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package io.github.leothawne.WhereAreYou;
 
 import java.util.Arrays;
@@ -11,8 +27,8 @@ import io.github.leothawne.WhereAreYou.api.utility.WarnIntegrationsAPI;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouAdminCommand;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouCommand;
 import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouAdminCommandTabCompleter;
-import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouCommandConstructor;
-import io.github.leothawne.WhereAreYou.event.player.AdminEvent;
+import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouCommandTabCompleter;
+import io.github.leothawne.WhereAreYou.event.AdminEvent;
 
 public class WhereAreYouLoader extends JavaPlugin {
 	private final ConsoleLoader myLogger = new ConsoleLoader(this);
@@ -40,7 +56,7 @@ public class WhereAreYouLoader extends JavaPlugin {
 			language = LanguageLoader.load();
 			getCommand("whereareyou").setExecutor(new WhereAreYouCommand(this, myLogger, language));
 			getCommand("whereareyouadmin").setExecutor(new WhereAreYouAdminCommand(this, myLogger, language));
-			getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandConstructor());
+			getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandTabCompleter());
 			getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandTabCompleter());
 			registerEvents(new AdminEvent(configuration));
 			new Version(this, myLogger);

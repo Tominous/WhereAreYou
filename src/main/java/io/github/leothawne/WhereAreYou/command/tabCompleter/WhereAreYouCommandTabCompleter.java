@@ -27,16 +27,14 @@ import com.google.common.collect.ImmutableList;
 
 import io.github.leothawne.WhereAreYou.api.utility.TabCompleterAPI;
 
-public class WhereAreYouAdminCommandTabCompleter extends TabCompleterAPI implements TabCompleter {
+public class WhereAreYouCommandTabCompleter extends TabCompleterAPI implements TabCompleter {
 	@Override
 	public final List<String> onTabComplete(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		List<String> ReturnNothing = new ArrayList<>();
-		if(sender.hasPermission("WhereAreYou.use") && sender.hasPermission("WhereAreYou.admin") && cmd.getName().equalsIgnoreCase("whereareyouadmin")) {
+		if(sender.hasPermission("WhereAreYou.use") && cmd.getName().equalsIgnoreCase("whereareyou")) {
 			if(args.length == 1) {
-				ImmutableList<String> WRU = ImmutableList.of("version", "find");
+				ImmutableList<String> WRU = ImmutableList.of("version");
 				return partial(args[0], WRU);
-			} else if(args.length == 2 && args[0].equalsIgnoreCase("find")) {
-				return null;
 			}
 		}
 		return ReturnNothing;
