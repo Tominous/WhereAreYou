@@ -29,6 +29,7 @@ import io.github.leothawne.WhereAreYou.command.WhereAreYouCommand;
 import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouAdminCommandTabCompleter;
 import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouCommandTabCompleter;
 import io.github.leothawne.WhereAreYou.event.AdminEvent;
+import io.github.leothawne.WhereAreYou.event.SignEvent;
 
 public class WhereAreYouLoader extends JavaPlugin {
 	private final ConsoleLoader myLogger = new ConsoleLoader(this);
@@ -58,7 +59,7 @@ public class WhereAreYouLoader extends JavaPlugin {
 			getCommand("whereareyouadmin").setExecutor(new WhereAreYouAdminCommand(this, myLogger, language));
 			getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandTabCompleter());
 			getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandTabCompleter());
-			registerEvents(new AdminEvent(configuration));
+			registerEvents(new AdminEvent(configuration), new SignEvent(this));
 			new Version(this, myLogger);
 			Version.check();
 			new WarnIntegrationsAPI(this, Arrays.asList("Essentials"));
