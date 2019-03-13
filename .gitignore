@@ -31,3 +31,7 @@ target/classes/META-INF/MANIFEST.MF
 target/classes/META-INF/maven/io.github.leothawne/WhereAreYou/pom.properties
 target/classes/META-INF/maven/io.github.leothawne/WhereAreYou/pom.xml
 target/test-classes/io/github/leothawne/WhereAreYou/AppTest.class
+target/classes/io/github/leothawne/WhereAreYou/WhereAreYou.class
+target/classes/io/github/leothawne/WhereAreYou/Version$1.class
+target/classes/io/github/leothawne/WhereAreYou/command/WhereAreYouAdminCommand$1.class
+target/classes/io/github/leothawne/WhereAreYou/api/utility/HTTP.class
