@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2019 Murilo Amaral Nappi
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 package io.github.leothawne.WhereAreYou.event;
 
 import org.bukkit.ChatColor;
@@ -12,14 +28,14 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import io.github.leothawne.WhereAreYou.WhereAreYouLoader;
+import io.github.leothawne.WhereAreYou.WhereAreYou;
 
 public class SignEvent implements Listener {
-	private static WhereAreYouLoader plugin;
-	public SignEvent(WhereAreYouLoader plugin) {
+	private static WhereAreYou plugin;
+	public SignEvent(WhereAreYou plugin) {
 		SignEvent.plugin = plugin;
 	}
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public static final void placeSign(SignChangeEvent event) {
 		Player player = (Player) event.getPlayer();
 		if(player.hasPermission("WhereAreYou.admin")) {
@@ -42,7 +58,7 @@ public class SignEvent implements Listener {
 			}
 		}
 	}
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public static final void clickSign(PlayerInteractEvent event) {
 		Player player = (Player) event.getPlayer();
 		if(player.hasPermission("WhereAreYou.admin")) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Murilo Amaral Nappi (murilonappi@gmail.com)
+ * Copyright (C) 2019 Murilo Amaral Nappi
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@ package io.github.leothawne.WhereAreYou.event;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
@@ -27,7 +28,7 @@ public class AdminEvent implements Listener {
 	public AdminEvent(FileConfiguration configuration) {
 		AdminEvent.configuration = configuration;
 	}
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public static final void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = (Player) event.getPlayer();
 		if(player.hasPermission("WhereAreYou.use") && player.hasPermission("WhereAreYou.admin")) {

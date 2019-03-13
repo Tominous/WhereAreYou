@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Murilo Amaral Nappi (murilonappi@gmail.com)
+ * Copyright (C) 2019 Murilo Amaral Nappi
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ public class WhereAreYouCommandTabCompleter extends TabCompleterAPI implements T
 	@Override
 	public final List<String> onTabComplete(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		List<String> ReturnNothing = new ArrayList<>();
-		if(sender.hasPermission("WhereAreYou.use") && cmd.getName().equalsIgnoreCase("whereareyou")) {
+		if(sender.hasPermission("WhereAreYou.use")) {
 			if(args.length == 1) {
 				ImmutableList<String> WRU = ImmutableList.of("version");
 				return partial(args[0], WRU);

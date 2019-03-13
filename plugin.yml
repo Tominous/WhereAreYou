@@ -6,25 +6,25 @@ load: STARTUP
 author: [leothawne]
 website: https://leothawne.github.io/WhereAreYou/
 url: https://leothawne.github.io/WhereAreYou/
-main: io.github.leothawne.WhereAreYou.WhereAreYouLoader
+main: io.github.leothawne.WhereAreYou.WhereAreYou
 database: false
 soft-depend: [Essentials]
 commands:
     whereareyou:
-        description: All available commands for Where Are You.
+        description: A Where Are You command.
         aliases: [wru]
         usage: /<command>
     whereareyouadmin:
-        description: All admin commands for Where Are You.
+        description: A Where Are You command.
         aliases: [wrua]
         usage: /<command>
 permissions:
     WhereAreYou.use:
-        description: Allow players to use WRU commands.
+        description: A Where Are You permission node.
         default: true
     WhereAreYou.find:
-        description: Allow players to find other players' locations.
+        description: A Where Are You permission node.
         default: true
     WhereAreYou.admin:
-        description: Allow admins to use WRU admin commands.
+        description: A Where Are You permission node.
         default: op

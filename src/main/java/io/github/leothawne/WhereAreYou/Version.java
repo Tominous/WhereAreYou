@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Murilo Amaral Nappi (murilonappi@gmail.com)
+ * Copyright (C) 2019 Murilo Amaral Nappi
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,39 +16,31 @@
  */
 package io.github.leothawne.WhereAreYou;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import io.github.leothawne.WhereAreYou.api.utility.HTTP;
 
 public class Version {
-	private static WhereAreYouLoader plugin;
-	private static ConsoleLoader myLogger;
-	public Version(WhereAreYouLoader plugin, ConsoleLoader myLogger) {
-		Version.plugin = plugin;
-		Version.myLogger = myLogger;
-	}
 	private static final int configFileVersion = 1;
 	private static final int english_languageFileVersion = 1;
 	private static final int portuguese_languageFileVersion = 1;
 	private static final String Plugin_Version = "0.1.0";
-	private static final String Plugin_Date = "99/99/9999 (America/Sao_Paulo)";
+	private static final String Plugin_Date = "99/99/9999 00:00 (BRT)";
 	private static final String Minecraft_Version = "1.13.x";
 	private static final String Minecraft_Build = "1.13-R0.1-SNAPSHOT";
 	private static final String Java_Version = "8+";
+	private static final String Update_URL = "https://leothawne.github.io/WhereAreYou/api/1.13.2.html";
+	private static final String Plugin_URL = "https://leothawne.github.io/WhereAreYou/api/" + Plugin_Version + "/plugin.html";
 	public static final int getConfigVersion() {
 		return configFileVersion;
 	}
 	public static final int getLanguageVersion(String language) {
-		if(language.equalsIgnoreCase("english")) {
-			return english_languageFileVersion;
-		}
-		if(language.equalsIgnoreCase("portuguese")) {
+		if(language.equals("portuguese")) {
 			return portuguese_languageFileVersion;
+		} else if(language.equals("english")) {
+			return english_languageFileVersion;
 		}
 		return 0;
 	}
@@ -67,29 +59,27 @@ public class Version {
 	public static final String getJavaVersion() {
 		return Java_Version;
 	}
+	public static final String getUpdateURL() {
+		return Update_URL;
+	}
 	public static final void version(CommandSender sender) {
 		sender.sendMessage(ChatColor.AQUA + "Where Are You " + ChatColor.YELLOW + "plugin " + ChatColor.GREEN + "" + Plugin_Version + "" + ChatColor.YELLOW + " (" + ChatColor.GREEN + "" + Plugin_Date + "" + ChatColor.YELLOW + "), Minecraft " + ChatColor.GREEN + "" + Minecraft_Version +  "" + ChatColor.YELLOW + " (Java " + ChatColor.GREEN + "" + Java_Version + "" + ChatColor.YELLOW + ", build " + ChatColor.GREEN + "" + Minecraft_Build + "" + ChatColor.YELLOW + ").");
 	}
-	public static final void check() {
-		try {
-			URLConnection allowedUrl = new URL("https://leothawne.github.io/WhereAreYou/api/" + Plugin_Version + "/plugin.html").openConnection();
-			allowedUrl.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
-			allowedUrl.connect();
-			BufferedReader allowedReader = new BufferedReader(new InputStreamReader(allowedUrl.getInputStream(), Charset.forName("UTF-8")));
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while((line = allowedReader.readLine()) != null) {
-				sb.append(line);
-			}
-			if(sb.toString() != null) {
-				if(sb.toString().equalsIgnoreCase("disabled")) {
-					myLogger.severe("Hey you, stop right there! The version " + Plugin_Version + " is not allowed anymore!");
-					myLogger.severe("Apologies, but this plugin will now be disabled! Download a newer version to play: [https://dev.bukkit.org/projects/where-are-you]");
-					plugin.getServer().getPluginManager().disablePlugin(plugin);
+	public static final void check(WhereAreYou plugin, ConsoleLoader myLogger) {
+		new BukkitRunnable() {
+			@Override
+			public final void run() {
+				String response = HTTP.getData(Plugin_URL);
+				if(response != null) {
+					if(response.equalsIgnoreCase("disabled")) {
+						myLogger.severe("Hey you, stop right there! The version " + Plugin_Version + " is not allowed anymore!");
+						myLogger.severe("Apologies, but this plugin will now be disabled! Download a newer version to play: https://dev.bukkit.org/projects/where-are-you");
+						plugin.getServer().getPluginManager().disablePlugin(plugin);
+					}
+				} else {
+					myLogger.warning("Unable to locate: " + Plugin_URL);
 				}
 			}
-		} catch(Exception e) {
-			myLogger.severe("Plugin: Is this version allowed?");
-		}
+		}.runTask(plugin);
 	}
 }

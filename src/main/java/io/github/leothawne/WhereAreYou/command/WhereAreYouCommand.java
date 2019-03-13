@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Murilo Amaral Nappi (murilonappi@gmail.com)
+ * Copyright (C) 2019 Murilo Amaral Nappi
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,16 +24,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import io.github.leothawne.WhereAreYou.ConsoleLoader;
 import io.github.leothawne.WhereAreYou.Version;
-import io.github.leothawne.WhereAreYou.WhereAreYouLoader;
 
 public class WhereAreYouCommand implements CommandExecutor {
-	private WhereAreYouLoader plugin;
-	private ConsoleLoader myLogger;
-	private FileConfiguration language;
-	public WhereAreYouCommand(WhereAreYouLoader plugin, ConsoleLoader myLogger, FileConfiguration language) {
-		this.plugin = plugin;
-		this.myLogger = myLogger;
-		this.language = language;
+	private static ConsoleLoader myLogger;
+	private static FileConfiguration language;
+	public WhereAreYouCommand(ConsoleLoader myLogger, FileConfiguration language) {
+		WhereAreYouCommand.myLogger = myLogger;
+		WhereAreYouCommand.language = language;
 	}
 	@Override
 	public final boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -41,12 +38,11 @@ public class WhereAreYouCommand implements CommandExecutor {
 			if(args.length == 0) {
 				sender.sendMessage(ChatColor.AQUA + "=+=+=+= [Where Are You] =+=+=+=");
 				sender.sendMessage(ChatColor.GREEN + "/whereareyou " + ChatColor.AQUA + "- Shows all commands for Where Are You.");
-				sender.sendMessage(ChatColor.GREEN + "/whereareyou version " + ChatColor.AQUA + "- Shows plugin version.");
-				sender.sendMessage(ChatColor.GREEN + "/whereareyouadmin " + ChatColor.AQUA + "- Administration commands for Where Are You.");
+				sender.sendMessage(ChatColor.GREEN + "/whereareyou version " + ChatColor.AQUA + "- Shows the plugin version.");
+				sender.sendMessage(ChatColor.GREEN + "/whereareyouadmin " + ChatColor.AQUA + "- Shows all administration commands for Where Are You.");
 				sender.sendMessage(ChatColor.YELLOW + "You can also use "+ ChatColor.GREEN + "/whereareyou "+ ChatColor.YELLOW + "as "+ ChatColor.GREEN + "/wru"+ ChatColor.YELLOW + ".");
 			} else if(args[0].equalsIgnoreCase("version")) {
 				if(args.length < 2) {
-					new Version(plugin, myLogger);
 					Version.version(sender);
 				} else {
 					sender.sendMessage(ChatColor.AQUA + "[WRU] " + ChatColor.YELLOW + "" + language.getString("player-tma"));
@@ -56,7 +52,7 @@ public class WhereAreYouCommand implements CommandExecutor {
 			}
 		} else {
 			sender.sendMessage(ChatColor.DARK_GREEN + "[WRU] " + ChatColor.YELLOW + "" + language.getString("no-permission"));
-			myLogger.warning(sender.getName() + " does not have permission [WhereAreYou.use]!");
+			myLogger.warning(sender.getName() + " does not have permission [WhereAreYou.use]: '/whereareyou' command.");
 		}
 		return true;
 	}

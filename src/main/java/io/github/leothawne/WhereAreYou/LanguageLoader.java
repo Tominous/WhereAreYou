@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Murilo Amaral Nappi (murilonappi@gmail.com)
+ * Copyright (C) 2019 Murilo Amaral Nappi
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,18 +24,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class LanguageLoader {
-	private static WhereAreYouLoader plugin;
-	private static ConsoleLoader myLogger;
-	private static FileConfiguration configuration;
-	protected LanguageLoader(WhereAreYouLoader plugin, ConsoleLoader myLogger, FileConfiguration configuration) {
-		LanguageLoader.plugin = plugin;
-		LanguageLoader.myLogger = myLogger;
-		LanguageLoader.configuration = configuration;
-	}
-	private static File languageFile;
-	protected static final void check() {
+	public static final void check(WhereAreYou plugin, ConsoleLoader myLogger, FileConfiguration configuration) {
 		myLogger.info("Looking for language file...");
-		languageFile = new File(plugin.getDataFolder(), configuration.getString("language") + ".yml");
+		File languageFile = new File(plugin.getDataFolder(), configuration.getString("language") + ".yml");
 		if(languageFile.exists() == false) {
 			myLogger.warning("Language file not found. Extracting...");
 			if(configuration.getString("language").equalsIgnoreCase("english") || configuration.getString("language").equalsIgnoreCase("portuguese")) {
@@ -48,9 +39,9 @@ public class LanguageLoader {
 			myLogger.info(configuration.getString("language") + ".yml file found.");
 		}
 	}
-	protected static final FileConfiguration load() {
+	public static final FileConfiguration load(WhereAreYou plugin, ConsoleLoader myLogger, FileConfiguration configuration) {
 		myLogger.info("Loading language file...");
-		languageFile = new File(plugin.getDataFolder(), configuration.getString("language") + ".yml");
+		File languageFile = new File(plugin.getDataFolder(), configuration.getString("language") + ".yml");
 		if(languageFile.exists()) {
 			FileConfiguration languageConfig = new YamlConfiguration();
 			try {
@@ -58,7 +49,6 @@ public class LanguageLoader {
 				myLogger.info(configuration.getString("language") + ".yml file loaded.");
 				int languageVersion = 0;
 				if(configuration.getString("language").equalsIgnoreCase("english") || configuration.getString("language").equalsIgnoreCase("portuguese")) {
-					new Version(plugin, myLogger);
 					languageVersion = Version.getLanguageVersion(configuration.getString("language"));
 				}
 				if(languageVersion != 0) {

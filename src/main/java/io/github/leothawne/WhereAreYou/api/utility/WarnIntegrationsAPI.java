@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Murilo Amaral Nappi (murilonappi@gmail.com)
+ * Copyright (C) 2019 Murilo Amaral Nappi
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,14 +20,14 @@ import java.util.List;
 
 import org.bukkit.plugin.Plugin;
 
-import io.github.leothawne.WhereAreYou.WhereAreYouLoader;
+import io.github.leothawne.WhereAreYou.WhereAreYou;
 
 public class WarnIntegrationsAPI {
-	public WarnIntegrationsAPI(WhereAreYouLoader mainPlugin, List<String> plugins) {
+	public WarnIntegrationsAPI(WhereAreYou mainPlugin, List<String> plugins) {
 		for(String plugin : plugins) {
 			Plugin getPlugin = mainPlugin.getServer().getPluginManager().getPlugin(plugin);
 			if(getPlugin != null) {
-				getPlugin.getLogger().warning(getPlugin.getName() + " was successfully integrated with " + mainPlugin.getName() + "!");
+				getPlugin.getLogger().warning(mainPlugin.getName() + " were successfully hooked into " + getPlugin.getName() + "!");
 			}
 		}
 	}
