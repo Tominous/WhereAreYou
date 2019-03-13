@@ -1,27 +1,36 @@
 User-agent: Googlebot
 Disallow: /WhereAreYou/api/
+Disallow: /WhereAreYou/contents/
 Allow: /WhereAreYou/
 
 User-agent: Googlebot-images
 Disallow: /WhereAreYou/api/
+Disallow: /WhereAreYou/contents/
 Allow: /WhereAreYou/
 
 User-agent: Adsbot-Google
 Disallow: /WhereAreYou/api/
+Disallow: /WhereAreYou/contents/
 Allow: /WhereAreYou/
 
 User-agent: Mediapartners-Google
 Disallow: /WhereAreYou/api/
+Disallow: /WhereAreYou/contents/
 Allow: /WhereAreYou/
 
 User-agent: Slurp
 Disallow: /WhereAreYou/api/
+Disallow: /WhereAreYou/contents/
 Allow: /WhereAreYou/
 
 User-agent: Bingbot
 Disallow: /WhereAreYou/api/
+Disallow: /WhereAreYou/contents/
 Allow: /WhereAreYou/
 
 User-agent: *
 Disallow: /WhereAreYou/api/
+Disallow: /WhereAreYou/contents/
 Allow: /WhereAreYou/
+
+Sitemap: https://leothawne.github.io/WhereAreYou/sitemap.xml
