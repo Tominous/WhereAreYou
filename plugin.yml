@@ -8,7 +8,6 @@ website: https://leothawne.github.io/WhereAreYou/
 url: https://leothawne.github.io/WhereAreYou/
 main: io.github.leothawne.WhereAreYou.WhereAreYou
 database: false
-soft-depend: [Essentials]
 commands:
     whereareyou:
         description: A Where Are You command.

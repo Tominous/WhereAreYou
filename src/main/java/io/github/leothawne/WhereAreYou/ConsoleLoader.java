@@ -33,7 +33,7 @@ public class ConsoleLoader {
 		getConsoleSender().sendMessage(ChatColor.AQUA + " \\ \\  /\\  / /| |__) | |  | |" + ChatColor.WHITE + "  V: " + Version.getVersionNumber() + " (Minecraft: " + Version.getMinecraftVersion() + ")");
 		getConsoleSender().sendMessage(ChatColor.AQUA + "  \\ \\/  \\/ / |  _  /| |  | |" + ChatColor.WHITE + "  Requires Java: " + Version.getJavaVersion());
 		getConsoleSender().sendMessage(ChatColor.AQUA + "   \\  /\\  /  | | \\ \\| |__| |" + ChatColor.WHITE + "  Released on: " + Version.getVersionDate());
-		getConsoleSender().sendMessage(ChatColor.AQUA + "    \\/  \\/   |_|  \\_\\\\____/ " + ChatColor.WHITE + "  My Twitter: @leonappi_");
+		getConsoleSender().sendMessage(ChatColor.AQUA + "    \\/  \\/   |_|  \\_\\\\____/ " + ChatColor.WHITE + "  My Twitter: @" + Version.getTwitterUsername());
 	}
 	public final void info(String message) {
 		getConsoleSender().sendMessage(ChatColor.WHITE + "[" + ChatColor.AQUA + "WRU " + ChatColor.GREEN + "I" + ChatColor.WHITE + "] " + message);

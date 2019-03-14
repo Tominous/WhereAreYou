@@ -16,15 +16,12 @@
  */
 package io.github.leothawne.WhereAreYou;
 
-import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.leothawne.WhereAreYou.api.bStats.MetricsAPI;
-import io.github.leothawne.WhereAreYou.api.utility.WarnIntegrationsAPI;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouAdminCommand;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouCommand;
 import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouAdminCommandTabCompleter;
@@ -65,13 +62,12 @@ public class WhereAreYou extends JavaPlugin {
 			LanguageLoader.check(this, myLogger, configuration);
 			language = LanguageLoader.load(this, myLogger, configuration);
 			getCommand("whereareyou").setExecutor(new WhereAreYouCommand(myLogger, language));
-			getCommand("whereareyouadmin").setExecutor(new WhereAreYouAdminCommand(this, myLogger, language));
+			getCommand("whereareyouadmin").setExecutor(new WhereAreYouAdminCommand(this, myLogger, configuration, language));
 			getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandTabCompleter());
-			getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandTabCompleter());
-			registerEvents(new AdminEvent(configuration), new SignEvent(this));
-			new WarnIntegrationsAPI(this, Arrays.asList("Essentials"));
+			getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandTabCompleter(this));
+			registerEvents(new AdminEvent(configuration), new SignEvent(this, language));
 		} else {
-			myLogger.severe("You manually choose to disable this plugin.");
+			myLogger.severe("You choose to disable this plugin.");
 			getServer().getPluginManager().disablePlugin(this);
 		}
 	}

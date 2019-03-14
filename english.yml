@@ -1,6 +1,12 @@
 no-permission: "You can't do that! You don't have permission."
 player-empty: "You must specify a player!"
 player-tma: "Too many arguments!"
+player-error: "You must be a player to do that."
+empty-name: "Name cannot be empty."
+not-found: "Player not found!"
+player-location: "Location of"
+player-world: "World"
+player-click: "Click here to teleport to that player."
 
 #Do not change it under any circumstances!
 language-version: 1

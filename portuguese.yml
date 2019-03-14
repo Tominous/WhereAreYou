@@ -1,3 +1,12 @@
+no-permission: "Você não pode fazer isso! Você não tem permissão."
+player-empty: "Você deve especificar um jogador!"
+player-tma: "Muitos argumentos inseridos."
+player-error: "Você deve ser um jogador para fazer isso."
+empty-name: "Nome não pode ficar vazio."
+not-found: "Jogador não encontrado!"
+player-location: "Localização de"
+player-world: "Mundo"
+player-click: "Clique aqui para teletrasportar até este jogador."
 
 #Não mude isso sob nenhuma circunstância!
 language-version: 1

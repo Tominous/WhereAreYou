@@ -20,6 +20,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -32,8 +33,10 @@ import io.github.leothawne.WhereAreYou.WhereAreYou;
 
 public class SignEvent implements Listener {
 	private static WhereAreYou plugin;
-	public SignEvent(WhereAreYou plugin) {
+	private static FileConfiguration language;
+	public SignEvent(WhereAreYou plugin, FileConfiguration language) {
 		SignEvent.plugin = plugin;
+		SignEvent.language = language;
 	}
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public static final void placeSign(SignChangeEvent event) {
@@ -49,11 +52,11 @@ public class SignEvent implements Listener {
 						event.setLine(1, getPlayer.getName());
 					} else {
 						event.setLine(0, ChatColor.DARK_RED + "" + ChatColor.BOLD + "[Find]");
-						player.sendMessage(ChatColor.DARK_RED + "Player not found!");
+						player.sendMessage(ChatColor.DARK_RED + language.getString("not-found"));
 					}
 				} else {
 					event.setLine(0, ChatColor.DARK_RED + "" + ChatColor.BOLD + "[Find]");
-					player.sendMessage(ChatColor.DARK_RED + "Name cannot be empty.");
+					player.sendMessage(ChatColor.DARK_RED + language.getString("empty-name"));
 				}
 			}
 		}

@@ -33,6 +33,7 @@ public class Version {
 	private static final String Java_Version = "8+";
 	private static final String Update_URL = "https://leothawne.github.io/WhereAreYou/api/1.13.2.html";
 	private static final String Plugin_URL = "https://leothawne.github.io/WhereAreYou/api/" + Plugin_Version + "/plugin.html";
+	private static final String Twitter_Username = "leonappi_";
 	public static final int getConfigVersion() {
 		return configFileVersion;
 	}
@@ -61,6 +62,9 @@ public class Version {
 	}
 	public static final String getUpdateURL() {
 		return Update_URL;
+	}
+	public static final String getTwitterUsername() {
+		return Twitter_Username;
 	}
 	public static final void version(CommandSender sender) {
 		sender.sendMessage(ChatColor.AQUA + "Where Are You " + ChatColor.YELLOW + "plugin " + ChatColor.GREEN + "" + Plugin_Version + "" + ChatColor.YELLOW + " (" + ChatColor.GREEN + "" + Plugin_Date + "" + ChatColor.YELLOW + "), Minecraft " + ChatColor.GREEN + "" + Minecraft_Version +  "" + ChatColor.YELLOW + " (Java " + ChatColor.GREEN + "" + Java_Version + "" + ChatColor.YELLOW + ", build " + ChatColor.GREEN + "" + Minecraft_Build + "" + ChatColor.YELLOW + ").");

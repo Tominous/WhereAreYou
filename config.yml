@@ -8,7 +8,6 @@ language: english
 #If 'true', this will not bother you while you are playing. I promisse!
 update:
     check: true
-    #download: true # Work in progress feature!
 
 #Do not change this under any circumstances!
 config-version: 1
