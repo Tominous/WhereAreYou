@@ -35,3 +35,4 @@ target/classes/io/github/leothawne/WhereAreYou/WhereAreYou.class
 target/classes/io/github/leothawne/WhereAreYou/Version$1.class
 target/classes/io/github/leothawne/WhereAreYou/command/WhereAreYouAdminCommand$1.class
 target/classes/io/github/leothawne/WhereAreYou/api/utility/HTTP.class
+target/classes/io/github/leothawne/WhereAreYou/api/WhereAreYouAPI.class
