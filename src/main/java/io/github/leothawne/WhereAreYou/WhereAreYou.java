@@ -20,6 +20,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import io.github.leothawne.WhereAreYou.api.bStats.MetricsAPI;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouAdminCommand;
@@ -28,6 +29,7 @@ import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouAdminComm
 import io.github.leothawne.WhereAreYou.command.tabCompleter.WhereAreYouCommandTabCompleter;
 import io.github.leothawne.WhereAreYou.event.AdminEvent;
 import io.github.leothawne.WhereAreYou.event.SignEvent;
+import io.github.leothawne.WhereAreYou.task.VersionTask;
 
 /**
  * Main class.
@@ -45,6 +47,8 @@ public class WhereAreYou extends JavaPlugin {
 	private static FileConfiguration configuration;
 	private static FileConfiguration language;
 	private static MetricsAPI metrics;
+	private static BukkitScheduler scheduler;
+	private static int versionTask;
 	/**
 	 * 
 	 * @deprecated Not for public use.
@@ -57,7 +61,6 @@ public class WhereAreYou extends JavaPlugin {
 		ConfigurationLoader.check(this, myLogger);
 		configuration = ConfigurationLoader.load(this, myLogger);
 		if(configuration.getBoolean("enable-plugin") == true) {
-			Version.check(this, myLogger);
 			MetricsLoader.init(this, myLogger, metrics);
 			LanguageLoader.check(this, myLogger, configuration);
 			language = LanguageLoader.load(this, myLogger, configuration);
@@ -65,6 +68,8 @@ public class WhereAreYou extends JavaPlugin {
 			getCommand("whereareyouadmin").setExecutor(new WhereAreYouAdminCommand(this, myLogger, configuration, language));
 			getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandTabCompleter());
 			getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandTabCompleter(this));
+			scheduler = getServer().getScheduler();
+			versionTask = scheduler.scheduleAsyncRepeatingTask(this, new VersionTask(this, myLogger, Version.getVersionNumber(), Version.getPluginURL()), 0, 20 * 1800);
 			registerEvents(new AdminEvent(configuration), new SignEvent(this, language));
 		} else {
 			myLogger.severe("You choose to disable this plugin.");
@@ -79,5 +84,8 @@ public class WhereAreYou extends JavaPlugin {
 	@Override
 	public final void onDisable() {
 		myLogger.info("Unloading...");
+		if(scheduler.isCurrentlyRunning(versionTask)) {
+			scheduler.cancelTask(versionTask);
+		}
 	}
 }

@@ -18,9 +18,6 @@ package io.github.leothawne.WhereAreYou;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import io.github.leothawne.WhereAreYou.api.utility.HTTP;
 
 public class Version {
 	private static final int configFileVersion = 1;
@@ -63,27 +60,13 @@ public class Version {
 	public static final String getUpdateURL() {
 		return Update_URL;
 	}
+	public static final String getPluginURL() {
+		return Plugin_URL;
+	}
 	public static final String getTwitterUsername() {
 		return Twitter_Username;
 	}
 	public static final void version(CommandSender sender) {
 		sender.sendMessage(ChatColor.AQUA + "Where Are You " + ChatColor.YELLOW + "plugin " + ChatColor.GREEN + "" + Plugin_Version + "" + ChatColor.YELLOW + " (" + ChatColor.GREEN + "" + Plugin_Date + "" + ChatColor.YELLOW + "), Minecraft " + ChatColor.GREEN + "" + Minecraft_Version +  "" + ChatColor.YELLOW + " (Java " + ChatColor.GREEN + "" + Java_Version + "" + ChatColor.YELLOW + ", build " + ChatColor.GREEN + "" + Minecraft_Build + "" + ChatColor.YELLOW + ").");
-	}
-	public static final void check(WhereAreYou plugin, ConsoleLoader myLogger) {
-		new BukkitRunnable() {
-			@Override
-			public final void run() {
-				String response = HTTP.getData(Plugin_URL);
-				if(response != null) {
-					if(response.equalsIgnoreCase("disabled")) {
-						myLogger.severe("Hey you, stop right there! The version " + Plugin_Version + " is not allowed anymore!");
-						myLogger.severe("Apologies, but this plugin will now be disabled! Download a newer version to play: https://dev.bukkit.org/projects/where-are-you");
-						plugin.getServer().getPluginManager().disablePlugin(plugin);
-					}
-				} else {
-					myLogger.warning("Unable to locate: " + Plugin_URL);
-				}
-			}
-		}.runTask(plugin);
 	}
 }
