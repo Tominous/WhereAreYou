@@ -148,7 +148,7 @@ public class WhereAreYouAPI {
 	 * 
 	 * @return A Location type value or a String type value.
 	 * 
-	 * @deprecated Replaced by {@link #getPlayerLocation(Player, Boolean)} and {@link #getPlayerLocation(UUID, Boolean)}.
+	 * @deprecated Replaced by {@link #getPlayerLocation(Player, boolean)} and {@link #getPlayerLocation(UUID, boolean)}.
 	 * 
 	 */
 	public final Object getPlayerLocation(String playerName, boolean toString) {
@@ -200,7 +200,7 @@ public class WhereAreYouAPI {
 	 * 
 	 * @return A Location type value or a String type value.
 	 * 
-	 * @deprecated Replaced by {@link #getPlayerLocation(Player, Boolean, Boolean)} and {@link #getPlayerLocation(UUID, Boolean, Boolean)}.
+	 * @deprecated Replaced by {@link #getPlayerLocation(Player, boolean, boolean)} and {@link #getPlayerLocation(UUID, boolean, boolean)}.
 	 * 
 	 */
 	public final Object getPlayerLocation(String playerName, boolean toString, boolean inBlocks) {
@@ -267,7 +267,7 @@ public class WhereAreYouAPI {
 	 * 
 	 * @return A Location type value, a String type value or a Vector type value.
 	 * 
-	 * @deprecated Replaced by {@link #getPlayerLocation(Player, Boolean, Boolean, Boolean)} and {@link #getPlayerLocation(UUID, Boolean, Boolean, Boolean)}.
+	 * @deprecated Replaced by {@link #getPlayerLocation(Player, boolean, boolean, boolean)} and {@link #getPlayerLocation(UUID, boolean, boolean, boolean)}.
 	 * 
 	 */
 	public final Object getPlayerLocation(String playerName, boolean toString, boolean inBlocks, boolean asVector) {
