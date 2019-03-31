@@ -85,7 +85,6 @@ public class WhereAreYouAdminCommand implements CommandExecutor {
 				} else if(args[0].equalsIgnoreCase("find")) {
 					if(args.length == 2) {
 						if(args[1].equalsIgnoreCase("me") == false) {
-							@SuppressWarnings("deprecation")
 							Player findPlayer = (Player) plugin.getServer().getPlayer(args[1]);
 							if(findPlayer != null) {
 								World world = plugin.getAPI().getPlayerLocation(findPlayer).getWorld();
@@ -141,7 +140,6 @@ public class WhereAreYouAdminCommand implements CommandExecutor {
 						if(args[1].equalsIgnoreCase("me") == false) {
 							if(sender instanceof Player) {
 								Player player = (Player) sender;
-								@SuppressWarnings("deprecation")
 								Player findPlayer = (Player) plugin.getServer().getPlayer(args[1]);
 								if(findPlayer != null) {
 									plugin.getAPI().teleportPlayer(player, findPlayer);

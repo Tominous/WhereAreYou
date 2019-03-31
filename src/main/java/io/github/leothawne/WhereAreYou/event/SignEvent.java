@@ -45,7 +45,6 @@ public class SignEvent implements Listener {
 			String[] lines = event.getLines();
 			if(lines[0].equalsIgnoreCase("[Find]")) {
 				if(!lines[1].equals("")) {
-					@SuppressWarnings("deprecation")
 					Player getPlayer = plugin.getServer().getPlayer(lines[1]);
 					if(getPlayer != null) {
 						event.setLine(0, ChatColor.DARK_BLUE + "" + "[Find]");
@@ -72,7 +71,6 @@ public class SignEvent implements Listener {
 					String[] lines = sign.getLines();
 					if(lines[0].equals(ChatColor.DARK_BLUE + "" + "[Find]")) {
 						if(!lines[1].equals("")) {
-							@SuppressWarnings("deprecation")
 							Player getPlayer = plugin.getServer().getPlayer(lines[1]);
 							if(getPlayer != null) {
 								if(player.isSneaking() == true) {
