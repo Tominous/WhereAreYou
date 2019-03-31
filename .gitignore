@@ -42,3 +42,4 @@ target/classes/io/github/leothawne/WhereAreYou/command/tabCompleter/WhereAreYouC
 target/classes/io/github/leothawne/WhereAreYou/event/AdminEvent.class
 target/classes/io/github/leothawne/WhereAreYou/event/SignEvent.class
 /target/
+javadoc.xml

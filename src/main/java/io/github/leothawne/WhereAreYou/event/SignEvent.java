@@ -48,14 +48,14 @@ public class SignEvent implements Listener {
 					@SuppressWarnings("deprecation")
 					Player getPlayer = plugin.getServer().getPlayer(lines[1]);
 					if(getPlayer != null) {
-						event.setLine(0, ChatColor.DARK_BLUE + "" + ChatColor.BOLD + "[Find]");
+						event.setLine(0, ChatColor.DARK_BLUE + "" + "[Find]");
 						event.setLine(1, getPlayer.getName());
 					} else {
-						event.setLine(0, ChatColor.DARK_RED + "" + ChatColor.BOLD + "[Find]");
+						event.setLine(0, ChatColor.DARK_RED + "" + "[Find]");
 						player.sendMessage(ChatColor.DARK_RED + language.getString("not-found"));
 					}
 				} else {
-					event.setLine(0, ChatColor.DARK_RED + "" + ChatColor.BOLD + "[Find]");
+					event.setLine(0, ChatColor.DARK_RED + "" + "[Find]");
 					player.sendMessage(ChatColor.DARK_RED + language.getString("empty-name"));
 				}
 			}
@@ -70,15 +70,13 @@ public class SignEvent implements Listener {
 				if((block.getType() == Material.SIGN) || (block.getType() == Material.WALL_SIGN)) {
 					Sign sign = (Sign) block.getState();
 					String[] lines = sign.getLines();
-					if(lines[0].equals(ChatColor.DARK_BLUE + "" + ChatColor.BOLD + "[Find]")) {
+					if(lines[0].equals(ChatColor.DARK_BLUE + "" + "[Find]")) {
 						if(!lines[1].equals("")) {
 							@SuppressWarnings("deprecation")
 							Player getPlayer = plugin.getServer().getPlayer(lines[1]);
 							if(getPlayer != null) {
 								if(player.isSneaking() == true) {
-									if(player.hasPermission("minecraft.command.teleport") || (plugin.getServer().getPluginManager().isPluginEnabled("Essentials") && player.hasPermission("essentials.tp")) || player.isOp()) {
-										player.performCommand("tp " + getPlayer.getName());
-									}
+									player.performCommand("whereareyouadmin teleport " + getPlayer.getName());
 								} else {
 									player.performCommand("whereareyouadmin find " + getPlayer.getName());
 								}

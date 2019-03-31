@@ -47,14 +47,14 @@ public class WhereAreYouAdminCommandTabCompleter extends TabCompleterAPI impleme
 				for(Player player : plugin.getServer().getOnlinePlayers()) {
 					WRU.add(player.getName());
 				}
-				return WRU;
+				return partial(args[1], WRU);
 			} else if(args.length == 2 && args[0].equalsIgnoreCase("teleport")) {
 				List<String> WRU = new ArrayList<String>();
 				WRU.add("me");
 				for(Player player : plugin.getServer().getOnlinePlayers()) {
 					WRU.add(player.getName());
 				}
-				return WRU;
+				return partial(args[1], WRU);
 			}
 		}
 		return ReturnNothing;

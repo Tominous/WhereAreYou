@@ -22,6 +22,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 
+import io.github.leothawne.WhereAreYou.api.WhereAreYouAPI;
 import io.github.leothawne.WhereAreYou.api.bStats.MetricsAPI;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouAdminCommand;
 import io.github.leothawne.WhereAreYou.command.WhereAreYouCommand;
@@ -69,7 +70,7 @@ public class WhereAreYou extends JavaPlugin {
 			getCommand("whereareyou").setTabCompleter(new WhereAreYouCommandTabCompleter());
 			getCommand("whereareyouadmin").setTabCompleter(new WhereAreYouAdminCommandTabCompleter(this));
 			scheduler = getServer().getScheduler();
-			versionTask = scheduler.scheduleAsyncRepeatingTask(this, new VersionTask(this, myLogger, Version.getVersionNumber(), Version.getPluginURL()), 0, 20 * 1800);
+			versionTask = scheduler.scheduleAsyncRepeatingTask(this, new VersionTask(this, myLogger, Version.getVersionNumber(), Version.getPluginURL()), 0, 20 * 60 * 60);
 			registerEvents(new AdminEvent(configuration), new SignEvent(this, language));
 		} else {
 			myLogger.severe("You choose to disable this plugin.");
@@ -87,5 +88,16 @@ public class WhereAreYou extends JavaPlugin {
 		if(scheduler.isCurrentlyRunning(versionTask)) {
 			scheduler.cancelTask(versionTask);
 		}
+	}
+	/**
+	 * 
+	 * Method used to cast the API class.
+	 * 
+	 * @return The API class.
+	 * 
+	 */
+	@SuppressWarnings("deprecation")
+	public final WhereAreYouAPI getAPI() {
+		return new WhereAreYouAPI(this, myLogger, metrics);
 	}
 }

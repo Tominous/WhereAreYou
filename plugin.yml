@@ -21,9 +21,6 @@ permissions:
     WhereAreYou.use:
         description: A Where Are You permission node.
         default: true
-    WhereAreYou.find:
-        description: A Where Are You permission node.
-        default: true
     WhereAreYou.admin:
         description: A Where Are You permission node.
         default: op

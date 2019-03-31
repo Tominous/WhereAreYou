@@ -17,7 +17,6 @@
 package io.github.leothawne.WhereAreYou.command;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -89,10 +88,10 @@ public class WhereAreYouAdminCommand implements CommandExecutor {
 							@SuppressWarnings("deprecation")
 							Player findPlayer = (Player) plugin.getServer().getPlayer(args[1]);
 							if(findPlayer != null) {
-								World world = findPlayer.getLocation().getWorld();
-								int x = findPlayer.getLocation().getBlockX();
-								int y = findPlayer.getLocation().getBlockY();
-								int z = findPlayer.getLocation().getBlockZ();
+								World world = plugin.getAPI().getPlayerLocation(findPlayer).getWorld();
+								int x = plugin.getAPI().getPlayerLocation(findPlayer).getBlockX();
+								int y = plugin.getAPI().getPlayerLocation(findPlayer).getBlockY();
+								int z = plugin.getAPI().getPlayerLocation(findPlayer).getBlockZ();
 								sender.sendMessage("");
 								sender.sendMessage("");
 								sender.sendMessage("");
@@ -145,8 +144,7 @@ public class WhereAreYouAdminCommand implements CommandExecutor {
 								@SuppressWarnings("deprecation")
 								Player findPlayer = (Player) plugin.getServer().getPlayer(args[1]);
 								if(findPlayer != null) {
-									Location location = findPlayer.getLocation();
-									player.teleport(location);
+									plugin.getAPI().teleportPlayer(player, findPlayer);
 								} else {
 									sender.sendMessage(ChatColor.AQUA + "[WRU :: Admin] " + ChatColor.YELLOW + language.getString("player-empty"));
 								}
