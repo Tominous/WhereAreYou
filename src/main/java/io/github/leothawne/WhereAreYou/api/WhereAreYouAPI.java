@@ -103,8 +103,6 @@ public class WhereAreYouAPI {
 	 * 
 	 * @return A Location type value.
 	 * 
-	 * @deprecated Replaced by {@link #getPlayerLocation(Player)} and {@link #getPlayerLocation(UUID)}.
-	 * 
 	 */
 	public final Location getPlayerLocation(String playerName) {
 		return getPlayerLocation(plugin.getServer().getPlayer(playerName));
@@ -147,8 +145,6 @@ public class WhereAreYouAPI {
 	 * @param toString Determines if return value must be String or not.
 	 * 
 	 * @return A Location type value or a String type value.
-	 * 
-	 * @deprecated Replaced by {@link #getPlayerLocation(Player, boolean)} and {@link #getPlayerLocation(UUID, boolean)}.
 	 * 
 	 */
 	public final Object getPlayerLocation(String playerName, boolean toString) {
@@ -199,8 +195,6 @@ public class WhereAreYouAPI {
 	 * @param inBlocks Determines if return value (Location or String) must be made with Integer values or not (Double values instead). If true, toString must be true.
 	 * 
 	 * @return A Location type value or a String type value.
-	 * 
-	 * @deprecated Replaced by {@link #getPlayerLocation(Player, boolean, boolean)} and {@link #getPlayerLocation(UUID, boolean, boolean)}.
 	 * 
 	 */
 	public final Object getPlayerLocation(String playerName, boolean toString, boolean inBlocks) {
@@ -267,8 +261,6 @@ public class WhereAreYouAPI {
 	 * 
 	 * @return A Location type value, a String type value or a Vector type value.
 	 * 
-	 * @deprecated Replaced by {@link #getPlayerLocation(Player, boolean, boolean, boolean)} and {@link #getPlayerLocation(UUID, boolean, boolean, boolean)}.
-	 * 
 	 */
 	public final Object getPlayerLocation(String playerName, boolean toString, boolean inBlocks, boolean asVector) {
 		return getPlayerLocation(plugin.getServer().getPlayer(playerName), toString, inBlocks, asVector);
@@ -308,8 +300,6 @@ public class WhereAreYouAPI {
 	 * @param toName The player's name.
 	 * 
 	 * @return A Boolean type value.
-	 * 
-	 * @deprecated Replaced by {@link #teleportPlayer(Player, Player)} and {@link #teleportPlayer(UUID, UUID)}.
 	 * 
 	 */
 	public final boolean teleportPlayer(String fromName, String toName) {
